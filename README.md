@@ -1,5 +1,5 @@
-Sudoku Game
+# Sudoku Game
 
-This is a Java-based Sudoku game with a user-friendly graphical interface built using JavaFX. It allows users to generate a new puzzle, solve it automatically, check if their solution is valid, and start a new game. Enjoy solving and testing your Sudoku skills!
+This is a Java-based Sudoku game with a user-friendly graphical interface built using JavaFX. It allows users to play, check if their solution is correct, and automatically solve the puzzle if it's too difficult.
 
-[Click here to watch demonstration](https://youtu.be/zL-RFgWrQjg)
+[Click here to watch demonstration](https://youtu.be/zL-RFgWrQjg){:target="_blank"}
