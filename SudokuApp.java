@@ -76,11 +76,10 @@ public class SudokuApp extends Application {
 			readInputToBoard();
 			System.out.println("Check Button was pressed:");
 			printBoardToConsole();
-			
-			if(!allCellsFilled()) {
+
+			if (!allCellsFilled()) {
 				showAlert("Incomplete", "Please fill in all cells before checking.");
-			}
-			else if (sudoku.check()) {
+			} else if (sudoku.check()) {
 				showAlert("Success", "The Sudoku is valid!");
 			} else {
 				showAlert("Error", "The Sudoku contains errors.");
@@ -99,13 +98,16 @@ public class SudokuApp extends Application {
 			updateBoardFromSudoku();
 			System.out.println("New Game Button was pressed:");
 			printBoardToConsole();
+			System.out.println("Solution:");
+			sudoku.solve();
+			printBoardToConsole();
 		});
 
 //		Buttons in einer HBox
 		HBox buttonBox = new HBox(10, checkButton, solveButton, newGameButton);
 		buttonBox.setAlignment(Pos.CENTER);
 
-		// SudokuLayer in eine HBox und die dann zentriert 
+		// SudokuLayer in eine HBox und die dann zentriert
 		HBox centerWrapper = new HBox(sudokuLayer);
 		centerWrapper.setAlignment(Pos.CENTER);
 
@@ -162,26 +164,26 @@ public class SudokuApp extends Application {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
-	
+
 	private boolean allCellsFilled() {
-	    for (int row = 0; row < SIZE; row++) {
-	        for (int col = 0; col < SIZE; col++) {
-	            if (sudoku.board[row][col] == 0) {
-	                return false;
-	            }
-	        }
-	    }
-	    return true;
+		for (int row = 0; row < SIZE; row++) {
+			for (int col = 0; col < SIZE; col++) {
+				if (sudoku.board[row][col] == 0) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
-	
+
 	private void printBoardToConsole() {
-	    for (int row = 0; row < SIZE; row++) {
-	        for (int col = 0; col < SIZE; col++) {
-	            System.out.print(sudoku.board[row][col] + " ");
-	        }
-	        System.out.println();
-	    }
-	    System.out.println();
+		for (int row = 0; row < SIZE; row++) {
+			for (int col = 0; col < SIZE; col++) {
+				System.out.print(sudoku.board[row][col] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
 
 	public static void main(String[] args) {

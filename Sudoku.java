@@ -1,18 +1,28 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Sudoku {
 	private static final int SIZE = 9;
 	public int[][] board = new int[SIZE][SIZE];
 	private int[][] solution = new int[SIZE][SIZE];
 
 	public void generate() {
-		solveBoard();
-
+		// Board leeren für saubere neu generierung
 		for (int i = 0; i < SIZE; i++) {
-			System.arraycopy(board[i], 0, solution[i], 0, SIZE);
+			for (int j = 0; j < SIZE; j++) {
+				board[i][j] = 0;
+			}
 		}
 
-		removeCells();
+		if (solveBoard()) {
+			for (int i = 0; i < SIZE; i++) {
+				System.arraycopy(board[i], 0, solution[i], 0, SIZE);
+			}
+
+			removeCells();
+		}
 	}
 
 	private boolean solveBoard() {
@@ -27,7 +37,13 @@ public class Sudoku {
 		if (board[row][col] != 0)
 			return solve(row, col + 1); // Wenn aktuelles Feld belegt, dann gehe zum nächsten
 
-		for (int num = 1; num <= SIZE; num++) {
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+		for (int i = 1; i <= SIZE; i++) {
+			numbers.add(i);
+		}
+		Collections.shuffle(numbers);
+
+		for (int num : numbers) {
 			if (isValid(num, row, col)) {
 				board[row][col] = num;
 				if (solve(row, col + 1))
